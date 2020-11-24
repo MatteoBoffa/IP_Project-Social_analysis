@@ -1,0 +1,17 @@
+{"Token_Dropbox":"aRrjQsduclkAAAAAAAAAAYVVcfozeAj3GyFLXcwjwmQK8sK8JqRcntH9iZ8vB7VV",
+"dropbox_path":"/Interdisciplinary Project/Instagram/",
+"local_path":"./Download/",
+"user_inst":"saraboffa",
+"pass_inst":"null",
+"login_mode":1,
+"mongo_cluster":"mongodb+srv://vincenzo:Ict@cluster0.qvgo1.mongodb.net/Images_Data?retryWrites=true&w=majority",
+"cluster":"Images_Data",
+"dataset":"Instagram_Data",
+"since":"2016,12,31",
+"until":"2020,01,01",
+"link_Instagram":"https://www.instagram.com/explore/locations/{0}/?__a=1&max_id={1}",
+"torPass":"VinCR7",
+"path_cursor":"./Cursors/cursors_[openhousetorino].json",
+"start_from":389,
+"end_with": 393
+} 

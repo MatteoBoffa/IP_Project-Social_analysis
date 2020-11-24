@@ -1,0 +1,93 @@
+{
+    "1008208803": {
+        "has_public_page": true,
+        "lat": 45.06199,
+        "lng": 7.68795,
+        "name": "Chiesa di San Massimo",
+        "slug": "chiesa-di-san-massimo"
+    },
+    "105403687979571": {
+        "has_public_page": true,
+        "lat": 45.0917225958,
+        "lng": 7.6572291581,
+        "name": "Parco Dora",
+        "slug": "parco-dora"
+    },
+    "1100709": {
+        "has_public_page": true,
+        "lat": 45.0664049583,
+        "lng": 7.6887374555,
+        "name": "Piazza Carlina",
+        "slug": "piazza-carlina"
+    },
+    "111644100388966": {
+        "has_public_page": true,
+        "lat": 45.06605,
+        "lng": 7.68805,
+        "name": "Piazza Carlina",
+        "slug": "piazza-carlina"
+    },
+    "1436912073207479": {
+        "has_public_page": true,
+        "lat": 45.0798,
+        "lng": 7.70678,
+        "name": "Cimitero monumentale di Torino",
+        "slug": "cimitero-monumentale-di-torino"
+    },
+    "144355706104291": {
+        "has_public_page": true,
+        "lat": 45.0667,
+        "lng": 7.7,
+        "name": "Fiume Po",
+        "slug": "fiume-po"
+    },
+    "218649309": {
+        "has_public_page": true,
+        "lat": 45.0630154173,
+        "lng": 7.6613065439,
+        "name": "Politecnico di Torino",
+        "slug": "politecnico-di-torino"
+    },
+    "221082977": {
+        "has_public_page": true,
+        "lat": 45.06287,
+        "lng": 7.6951223025,
+        "name": "Fiume Po",
+        "slug": "fiume-po"
+    },
+    "246268532": {
+        "has_public_page": true,
+        "lat": 45.1350496,
+        "lng": 7.6259117,
+        "name": "Cappella di Sant'Uberto della Reggia di Venaria",
+        "slug": "cappella-di-santuberto-della-reggia-di-venaria"
+    },
+    "249367568": {
+        "has_public_page": true,
+        "lat": 45.030746673,
+        "lng": 7.656459415,
+        "name": "Passerella Olimpica Torino",
+        "slug": "passerella-olimpica-torino"
+    },
+    "273272931": {
+        "has_public_page": true,
+        "lat": 45.0645177895,
+        "lng": 7.6871350545,
+        "name": "Open Baladin Torino",
+        "slug": "open-baladin-torino"
+    },
+    "414200146": {
+        "has_public_page": true,
+        "lat": 45.0500347694,
+        "lng": 7.684555122,
+        "name": "Lampioni Innamorati",
+        "slug": "lampioni-innamorati"
+    },
+    "9589926": {
+        "has_public_page": true,
+        "lat": 45.0645372995,
+        "lng": 7.6851105781,
+        "name": "Via Cavour",
+        "slug": "via-cavour"
+    }
+}
