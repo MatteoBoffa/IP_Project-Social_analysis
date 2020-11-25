@@ -1,0 +1,34 @@
+Project Group C
+
+0. Stato dell'arte
+
+1. Creare il Database 
+	1.1 Scaricare immagini dal social
+	1.2 Estrarre e organizzare i geotag
+	1.3 Raccolta e pulizia dati (ipotesi riga database: [utente + geotag + timestamp + immagine associata + tags(?) + cluster])
+
+2. Clustering geotag
+	2.1 Testare KMeans, DBscan (ed eventualmente altro) (+ scegliere numero cluster)
+	2.2 Confronto col territorio (ArcGIS/QuantumGis-QGIS o altro)
+	
+3. Image processing
+	3.1 Scelta rete convoluzionale (pretrained con ImageNET?)
+	3.2 Classificazione delle immagini
+	3.3 Aggiornamento Database
+
+metà Marzo  	
+	
+4. Statistiche per cluster
+	4.1 Evoluzione della percezione durante gli anni
+	4.2 Evoluzione dei cluster durante gli anni
+
+5. Scrittura report + presentazione risultati
+    
+metà Aprile
+	
+Domande per Mellia:
+ - possibilità di avere uno storage condiviso
+ - cosa salvare di queste foto (si può ridurre lo spazio?)
+ - come applicare il punto 2
+ - consigli generici su come approcciare image processing
+ 
