@@ -29,25 +29,48 @@ plt.show()
 X = np.array(list(zip(lat, lng))).reshape(len(lat), 2)
 X = StandardScaler().fit_transform(X)
 
-distortions = []
-silhouette_coefficients=[]
-K = [2,10,13]
+#distortions = []
+#silhouette_coefficients=[]
+K = [2,9,12]
+
 for k in K:
+	xs=[]
+	ys=[]
+	labels=[]
 	print(f"Doing k:{k}")
-	kmeanModel = KMeans(n_clusters=k).fit(X,counters)
-	label=kmeanModel.fit_predict(X)
+	kmeanModel = KMeans(n_clusters=k)
+	label=kmeanModel.fit_predict(X,counters)
+	"""
 	distortions.append(sum(np.min(cdist(X, kmeanModel.cluster_centers_, 'euclidean'), axis=1)) / X.shape[0])
 	score = silhouette_score(X, kmeanModel.labels_)
 	silhouette_coefficients.append(score)
+	"""
 	u_labels=np.unique(label)
 	for i in u_labels:
 		plt.scatter(lat[label == i], lng[label == i], label=i)
+		xs+=list(lng[label == i])
+		ys+=list(lat[label==i])
+		labels+=list([i for it in range(len(lat[label==i]))])
 	plt.legend()
 	plt.title(
 	f"k-means\nN_Cluster: {k}", fontdict={"fontsize": 12}
 	)
 	plt.show()
-	
+	transformer = Transformer.from_crs("epsg:3003","epsg:4326")
+	for i in range(0,len(xs)):
+		x,y=transformer.transform(xs[i],ys[i])
+		xs[i]=x
+		ys[i]=y
+
+	excel_file={
+	"lng":xs,
+	"lat":ys,
+	"label":labels
+	}
+
+	df2=pd.DataFrame(excel_file,columns=["lat","lng","label"])
+	df2.to_excel(f"Results/Clusters_{k}_for_QGis.xlsx")
+"""
 plt.plot(K, distortions, 'bx-')
 plt.xlabel('k')
 plt.ylabel('Distortion')
@@ -55,8 +78,9 @@ plt.title('The Elbow Method showing the optimal k')
 plt.show()
 
 plt.style.use("fivethirtyeight")
-plt.plot(range(2, 30), silhouette_coefficients)
-plt.xticks(range(2, 30))
+plt.plot(range(2, 31), silhouette_coefficients)
+plt.xticks(range(2, 31))
 plt.xlabel("Number of Clusters")
 plt.ylabel("Silhouette Coefficient")
 plt.show()
+"""
