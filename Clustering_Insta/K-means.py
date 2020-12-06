@@ -31,7 +31,7 @@ X = StandardScaler().fit_transform(X)
 
 distortions = []
 silhouette_coefficients=[]
-K = range(2,30)
+K = [2,10,13]
 for k in K:
 	print(f"Doing k:{k}")
 	kmeanModel = KMeans(n_clusters=k).fit(X,counters)
@@ -39,15 +39,15 @@ for k in K:
 	distortions.append(sum(np.min(cdist(X, kmeanModel.cluster_centers_, 'euclidean'), axis=1)) / X.shape[0])
 	score = silhouette_score(X, kmeanModel.labels_)
 	silhouette_coefficients.append(score)
-	"""
-	filtered_label0 = dfs[label == 0].to_numpy()
-	plt.scatter(filtered_label0[:, 0], filtered_label0[:, 1])
+	u_labels=np.unique(label)
+	for i in u_labels:
+		plt.scatter(lat[label == i], lng[label == i], label=i)
+	plt.legend()
 	plt.title(
 	f"k-means\nN_Cluster: {k}", fontdict={"fontsize": 12}
 	)
 	plt.show()
-	exit()
-	"""
+	
 plt.plot(K, distortions, 'bx-')
 plt.xlabel('k')
 plt.ylabel('Distortion')
