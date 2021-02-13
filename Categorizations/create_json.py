@@ -47,6 +47,5 @@ print(f"The difference between the original list and the re-labeled classes is: 
 print(f"\tOriginal - re-labeled: {set_subclasses.difference(dict_to_save.keys())}")
 print(f"\tRe-labeled - original: {set(dict_to_save.keys()).difference(set_subclasses)}")
 
-exit()
 with open("classes.json",'w+') as outfile:
 	json.dump(dict_to_save, outfile)
