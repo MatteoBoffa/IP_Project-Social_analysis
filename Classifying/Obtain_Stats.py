@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from string import *
 
 
-INPUT_PATH = "./After_elaboration/Everything/Center/"
-files = ["Flickr_final.csv", "Instagram_final.csv"]
+INPUT_PATH = "./After_elaboration/Weekends_Only/Modified/"
+files = ["Flickr_final.xls", "Instagram_final.xls"]
 
 dict_classes = {}
 
