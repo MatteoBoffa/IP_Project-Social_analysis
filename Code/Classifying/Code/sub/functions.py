@@ -18,20 +18,6 @@ for it in range(len(list_convertor)):
 	dict_traslator[it+1]=list_convertor[it]
 	#EACH CLASS WILL HAVE AN IDENTIFYING NUMBER (i.e: 'Palaces' = 1)
 
-#FIELDS TO EXPORT AND PLOT ON QGIS
-to_export = {
-	"lat":[],
-	"lng":[],
-	"cluster_id":[],
-	"[photos_per_coordinates]":[],
-	"[photos_per_cluster]":[],
-	"cultural":[],
-	"turist_attr":[],
-	"cadastre":[]
-} 
-for el in list_convertor:
-	to_export[el]=[]
-
 colors = ["#7D0000","#FF0000","#FB7756","gold","#1AC0C6",\
 			"#1A1B4B","#3E4491","#3A9EFD","#8C61FF","#DDACF5",\
 			"steelblue","#454D66","#58B368","#DAD873"]
@@ -50,29 +36,30 @@ def obtain_perception(file, perception_zones, points_per_zone):
 		cluster_id = point[-1] 
 		lat = point[-4]
 		lng = point[-3]
-		try: #Some point might be missing the prediction
-			predictions = point[1].split(",")
-			if cluster_id not in list(perception_zones.keys()): 
-			#if that zone was never considered, configure an instance
-				perception_zones[cluster_id] = {}
-				points_per_zone[cluster_id] = {
-				"lats":[],
-				"lngs":[]
-				}
-			points_per_zone[cluster_id]["lats"].append(lat)
-			points_per_zone[cluster_id]["lngs"].append(lng)
-			#Since we kept the best three, now it's time to analyse them!
-			for pred in predictions:
-				main_class = pred.split(":")[0].strip()
-				prob = float(pred.split(":")[1].strip())
-				#Again, consider whether that macro_class has been already used or not
-				if main_class not in perception_zones[cluster_id]:
-					perception_zones[cluster_id][main_class] = prob
-				else:
-					perception_zones[cluster_id][main_class] += prob
-		except Exception as e:
-			#print(e)
-			print(f"No prob available for id {id_point}")	
+		if 46>=lat>=44 and 8>=lng>=6:
+			try: #Some point might be missing the prediction
+				predictions = point[1].split(",")
+				if cluster_id not in list(perception_zones.keys()): 
+				#if that zone was never considered, configure an instance
+					perception_zones[cluster_id] = {}
+					points_per_zone[cluster_id] = {
+					"lats":[],
+					"lngs":[]
+					}
+				points_per_zone[cluster_id]["lats"].append(lat)
+				points_per_zone[cluster_id]["lngs"].append(lng)
+				#Since we kept the best three, now it's time to analyse them!
+				for pred in predictions:
+					main_class = pred.split(":")[0].strip()
+					prob = float(pred.split(":")[1].strip())
+					#Again, consider whether that macro_class has been already used or not
+					if main_class not in perception_zones[cluster_id]:
+						perception_zones[cluster_id][main_class] = prob
+					else:
+						perception_zones[cluster_id][main_class] += prob
+			except Exception as e:
+				#print(e)
+				print(f"No prob available for id {id_point}")	
 	return perception_zones,points_per_zone	
 
 def plot_results(perception_zones, points_per_zone, OUTPUT_PICTURE):
@@ -149,6 +136,7 @@ def export_file(file_input, perception_zones, points_per_zone, density_per_zone,
 	output_dataframe.to_csv(file_output, index = False)
 
 def create_dataframe_export(dict_point):
+	to_export = create_support_structure()
 	for key in dict_point.keys():
 		lat = key.split(" ")[0]
 		lng = key.split(" ")[1]
@@ -165,39 +153,58 @@ def create_dataframe_export(dict_point):
 
 	return to_export
 
+def create_support_structure():
+	#FIELDS TO EXPORT AND PLOT ON QGIS
+	to_export = {
+		"lat":[],
+		"lng":[],
+		"cluster_id":[],
+		"[photos_per_coordinates]":[],
+		"[photos_per_cluster]":[],
+		"cultural":[],
+		"turist_attr":[],
+		"cadastre":[]
+	} 
+	for el in list_convertor:
+		to_export[el]=[]
+	return to_export
+
 def obtain_stats_coordinate(to_analyse,perception_zones, density_per_zone,points_per_zone):
 	dict_point = {} #each point with the same coordinates will be counted only once
+	tot_per_zone = find_total_score(perception_zones)
 	for point in to_analyse:
 		lat = point[2]
 		lng = point[3]
-		key = str(lat)+" "+str(lng)
-		if key not in dict_point.keys():
-			dict_point[key] = {}
-			dict_point[key]["[photos_per_coordinates]"] = 1
-			dict_point[key]["cluster_id"] = point[-1]
-			#NOW EVALUATING FEATURES WHICH REGARDS THE CLUSTER TO WHICH THE POINT IS ASSIGNED
-			score_cultural = 0 
-			score_attr = 0
-			score_cadastre = 0
-			for it, main_class in enumerate(list_convertor): #CONSIDERING EACH MAIN CLASS'S SCORES
-				try:
-					#EXTRACTING THE IT+1 MAIN CLASS SCORE OF THE CLUSTER TO WHICH THE POINT BELONGS
-					score = perception_zones[point[-1]][str(it+1)]/density_per_zone[point[-1]]
-				except Exception as e: #IF THAT CLASS IS NOT PRESENT IN THE CLUSTER
-					score = 0
-				dict_point[key][main_class] = score
-				if main_class in list_culturals:
-					score_cultural+=score
-				if main_class in list_attractions:
-					score_attr+=score
-				if main_class in list_cadastre:
-					score_cadastre+=score
-			dict_point[key]["[photos_per_cluster]"] = len(points_per_zone[point[-1]]["lats"])
-			dict_point[key]["cultural"] = score_cultural
-			dict_point[key]["turist_attr"] = score_attr
-			dict_point[key]["cadastre"] = score_cadastre
-		else:
-			dict_point[key]["[photos_per_coordinates]"]+=1
+		if 46>=lat>=44 and 8>=lng>=6:
+			key = str(lat)+" "+str(lng)
+			if key not in dict_point.keys():
+				dict_point[key] = {}
+				dict_point[key]["[photos_per_coordinates]"] = 1
+				dict_point[key]["cluster_id"] = point[-1]
+				#NOW EVALUATING FEATURES WHICH REGARDS THE CLUSTER TO WHICH THE POINT IS ASSIGNED
+				score_cultural = 0 
+				score_attr = 0
+				score_cadastre = 0
+				for it, main_class in enumerate(list_convertor): #CONSIDERING EACH MAIN CLASS'S SCORES
+					try:
+						#EXTRACTING THE IT+1 MAIN CLASS SCORE OF THE CLUSTER TO WHICH THE POINT BELONGS
+						score = perception_zones[point[-1]][str(it+1)]/density_per_zone[point[-1]] #NON NORMALIZED
+						#score = perception_zones[point[-1]][str(it+1)]/density_per_zone[point[-1]]/tot_per_zone[point[-1]]*100
+					except Exception as e: #IF THAT CLASS IS NOT PRESENT IN THE CLUSTER
+						score = 0
+					dict_point[key][main_class] = score
+					if main_class in list_culturals:
+						score_cultural+=score
+					if main_class in list_attractions:
+						score_attr+=score
+					if main_class in list_cadastre:
+						score_cadastre+=score
+				dict_point[key]["[photos_per_cluster]"] = len(points_per_zone[point[-1]]["lats"])
+				dict_point[key]["cultural"] = score_cultural
+				dict_point[key]["turist_attr"] = score_attr
+				dict_point[key]["cadastre"] = score_cadastre
+			else:
+				dict_point[key]["[photos_per_coordinates]"]+=1
 	return dict_point
 
 def find_total_score(perception_zones):
@@ -205,7 +212,7 @@ def find_total_score(perception_zones):
 	for zone in perception_zones.keys():
 		sum_class = 0
 		for main_class in perception_zones[zone].keys():
-			sum_class += dict_classes[zone][main_class]
+			sum_class += perception_zones[zone][main_class]
 		tot_per_zone[zone] = sum_class
 	return tot_per_zone	
 	
@@ -232,7 +239,7 @@ def evaluate_density(perception_zones, points_per_zone):
 				distance=haversine(point_1,point_2,Unit.KILOMETERS) #DISTANCE BETWEEN A POINT AND ITS CLOSEST NEIGHBOUR
 				distances.append(distance)
 		else:
-			print(f"Only one point in cluster {zone}!")
+			#print(f"Only one point in cluster {zone}!")
 			distances.append(0.01)
 		density_per_zone[zone] = np.std(distances)
 		#THE HIGHER THIS INDEX, THE SPARSER THE DISTRIBUTION OF POINTS

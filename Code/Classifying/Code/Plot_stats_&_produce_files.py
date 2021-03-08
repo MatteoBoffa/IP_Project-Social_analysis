@@ -1,7 +1,7 @@
 import sub.functions as sf
 
 #CONFIGURATION VARIABLE: INDICATES INPUT/OUTPUT PATHS AND NAME OF FILES
-UNDER_STUDY = "Weekends_Only"
+UNDER_STUDY = "Center"
 INPUT_PATH = "../After_QGIS_Processing/"+UNDER_STUDY+"/Modified/"
 OUTPUT_PATH_FILES = "../csv_To_Plot/"+UNDER_STUDY+"/"
 OUTPUT_PATH_PICTURES = "../Results/Graphs/"
