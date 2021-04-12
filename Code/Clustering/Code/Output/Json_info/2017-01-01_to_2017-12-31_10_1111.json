@@ -1,0 +1,17 @@
+{
+    "start_date": "2017-01-01",
+    "end_date": "2017-12-31",
+    "weekdays": 0,
+    "weekends": 1,
+    "morning": 1,
+    "afternoon": 1,
+    "evening": 1,
+    "night": 1,
+    "[photo]_Flickr_v2": "1295",
+    "[photo]_Instagram_Data": "1358",
+    "radius_DBSCAN": "1.578466143968498",
+    "best_M_DBSCAN": "19",
+    "[clusters]_DBSCAN": "5",
+    "main_cluster_KMEANS": "0",
+    "[clusters]_kmeans": "3"
+}

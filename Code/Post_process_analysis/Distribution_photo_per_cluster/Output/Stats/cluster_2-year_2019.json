@@ -1,0 +1,15 @@
+{
+    "tot_pictures": 64.0,
+    "mean(picture/day)": 4.0,
+    "stdv(picture/day)": 4.4860896112315904,
+    "third_interquantile(picture/day)": 5.5,
+    "min_date-min_value": [
+        "2-17",
+        1.0
+    ],
+    "max_date-max_value": [
+        "9-6",
+        18.0
+    ],
+    "outliers": []
+}
