@@ -1,15 +1,3 @@
-"""
-TO_ANALYSE
-2017:
-45.07	7.7	DONE
-45.07	7.71 DONE
-45.06	7.71 DONE
-45.06	7.7	DONE
-45.08	7.77 ERROR?
-2019:
-45.02	7.67 DONE
-45.06	7.65
-"""
 import sys
 import pymongo
 import matplotlib.pyplot as plt
@@ -17,12 +5,6 @@ import dropbox
 import random
 import os
 
-#assert len(sys.argv) == 3, "Attenton: three parameters are required to run this script (lat, lng, year)"
-"""
-lat = sys.argv[1]
-lng = sys.argv[2]
-year = sys.argv[3]
-"""
 
 def get_turning_month(sort_orders):
 	#Function that returns the array index in which the month changes -> in order to know where to represent it on the x-axis!
@@ -37,9 +19,11 @@ def get_turning_month(sort_orders):
 
 	return days_index, current_month
 
-chosen_lat = 45.08
-chosen_lng = 7.77	
-chosen_year = 2017
+assert len(sys.argv) == 4, "Attenton: three parameters are required to run this script (lat, lng, year)"
+
+lat = sys.argv[1]
+lng = sys.argv[2]
+year = sys.argv[3]
 
 print(f"\nDownloading info from mongo...")
 
