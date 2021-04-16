@@ -4,7 +4,7 @@ import os
 import sys
 
 interesting_files = ["Flickr_final.csv", "Instagram_final.csv"]
-columns_input = ["lat", "lng","ids", "predictions", "label", "CLUSTER_ID"]
+columns_input = ["ids", "predictions", "lat", "lng", "label", "CLUSTER_ID"] #ORDER CRUCIAL!
 columns_to_modify = {"lon":"lng","id":"ids"}
 
 DIRECTORY_TO_ANALYSE = os.getcwd()

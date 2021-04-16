@@ -1,12 +1,12 @@
 import sub.functions as sf
 
 #CONFIGURATION VARIABLE: INDICATES INPUT/OUTPUT PATHS AND NAME OF FILES
-UNDER_STUDY = "Center"
+UNDER_STUDY = "Weekends_Only"
 INPUT_PATH = "../After_QGIS_Processing/"+UNDER_STUDY+"/Modified/"
 OUTPUT_PATH_FILES = "../csv_To_Plot/"+UNDER_STUDY+"/"
 OUTPUT_PATH_PICTURES = "../Results/Graphs/"
 OUTPUT_PICTURE = OUTPUT_PATH_PICTURES+UNDER_STUDY+".png"
-files_input = ["Flickr_final.xls", "Instagram_final.xls"]
+files_input = ["Flickr_final.csv", "Instagram_final.csv"]
 files_output = ["Summary_Flickr.csv","Summary_Instagram.csv"]
 
 #OBTAINING INFORMATION PER ZONE

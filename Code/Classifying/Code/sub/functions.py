@@ -5,6 +5,12 @@ import matplotlib.pyplot as plt
 from haversine import haversine,Unit
 np.seterr('raise')
 
+font = {'weight' : 'bold',
+		'size'   : 22}
+
+plt.rc('font', **font)
+plt.rcParams['figure.figsize'] = (15, 10)
+
 #GLOBAL VARIABLES
 ################################################################################
 list_convertor = ["Palaces","Miscellaneous","Food","Facilities","Natural_views",\
