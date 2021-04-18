@@ -109,7 +109,20 @@ def plot_results(perception_zones, points_per_zone, OUTPUT_PICTURE):
 			last_el = list_bars_per_zone[-1]
 			list_bars_per_zone.append(last_el+len(perception_zones[zone].keys()))	
 		#Saving total number of pictures on a list (will be useful later)			
-		list_total_per_zone.append(len(points_per_zone[zone]["lats"]))  
+		list_total_per_zone.append(len(points_per_zone[zone]["lats"])) 
+		""" 
+		#DECOMMENT TO GET PERCEPTION
+		if int(zone) == 13 or int(zone) == 14:
+			print(f"\tFor {zone}:")
+			macro_classes = [el[0] for el in list_classes_ordered]
+			values = [el[1]/tot_score_zone*100 for el in list_classes_ordered]
+			to_export = {
+				"macro_classes":macro_classes,
+				"values": values
+			}
+			output_dataframe = pd.DataFrame.from_dict(to_export)
+			output_dataframe.to_csv(f"./zone_{zone}.csv", index = False)
+		"""
 	#AIMS AT ADDING THE TOTAL NUMBER OF PICTURES INFO
 	it_list_bars = 0
 	for it,p in enumerate(ax.patches):

@@ -20,16 +20,19 @@ for it in range(len(list_convertor)):
 # GIVING INPUTS
 print("Available input files:")
 dict_files = {}
+it = 0
 for subfolder in os.listdir(INPUT_PATH):
-	for it, file in enumerate(os.listdir(INPUT_PATH+subfolder)):
-		print(f"\t{it+1}) {subfolder}/{file}")
-		dict_files[it+1] = INPUT_PATH+subfolder+"/"+file
+	for file in os.listdir(INPUT_PATH+subfolder):
+		it+=1
+		print(f"\t{it}) {subfolder}/{file}")
+		dict_files[it] = (INPUT_PATH+subfolder+"/"+file, subfolder)
 
 file = int(input("\nWhich file do you choose? "))
 while file not in dict_files.keys():
 	file = int(input("Option not available: which file do you choose? "))
 
-file = dict_files[file]
+subfolder = dict_files[file][1]
+file = dict_files[file][0]
 input_file = pd.read_csv(file)
 df = input_file.sample(frac=1).reset_index(drop=True) #SHUFFLE ROWS TO PICK DIFFERENT PIC
 
@@ -61,7 +64,7 @@ if dataset == "Flickr_final": #To download photos here we need the secret id...
 	db_instance = pymongo_instance['Images_Data']
 	collection = db_instance["Flickr_v2"]
 
-output_folder = f"{dataset}_cluster_{chosen_cluster}_class_{chosen_class}/"
+output_folder = f"{dataset}_{subfolder}_cluster_{chosen_cluster}_class_{chosen_class}/"
 
 os.makedirs(OUTPUT_PATH+output_folder,exist_ok=True)
 
