@@ -1,4 +1,4 @@
-This folder collects the code of the presented pipeline. 
+#Presented Pipeline
 
 This start with the downloading phase: with the aid of developers tools such as Instaloader and Flickr-api, it is possible to download the social contents of 
 chosen zone and period. 
@@ -9,4 +9,4 @@ Next, the classification phase: the Inception V3 architecture is used to classif
 
 Finally, the post-process phase, where different form of analysis are performed on the results of the previous steps.
 
-![alt text](https://github.com/MatteoBoffa/IP_Project-Social_analysis/blob/main/Code/pipeline.pdf)
+![alt text](https://github.com/MatteoBoffa/IP_Project-Social_analysis/blob/main/Code/pipeline.jpg)
