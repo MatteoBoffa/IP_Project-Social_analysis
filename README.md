@@ -6,3 +6,4 @@ This  research  aims  at  studying  the  geographical  contour  of  Turin  in  o
 
 The  results  show  that  both  global  studies  about  the  city  and  specific  investigations  on particular zones and periods are feasible and reliable on respect to both our knowledge of the city and real indexes such as the cadastral value.
 
+[Complete report](https://github.com/MatteoBoffa/IP_Project-Social_analysis/blob/main/IP_Report.pdf) is available.
