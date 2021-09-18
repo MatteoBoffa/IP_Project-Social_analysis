@@ -9,4 +9,4 @@ Next, the classification phase: the Inception V3 architecture is used to classif
 
 Finally, the post-process phase, where different form of analysis are performed on the results of the previous steps.
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/MatteoBoffa/IP_Project-Social_analysis/blob/main/Code/pipeline.pdf)
