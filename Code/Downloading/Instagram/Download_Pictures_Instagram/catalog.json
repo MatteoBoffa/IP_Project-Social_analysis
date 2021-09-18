@@ -1,0 +1,17 @@
+{"Token_Dropbox":"Token_example",
+"dropbox_path":"/Path_to_dropbox/",
+"local_path":"./Local_path/",
+"user_inst":"username",
+"pass_inst":"null",
+"login_mode":1,
+"mongo_cluster":"mongo_cluster_url",
+"cluster":"Images_Data",
+"dataset":"Instagram_Data",
+"since":"2016,12,31",
+"until":"2020,01,01",
+"link_Instagram":"https://www.instagram.com/explore/locations/{0}/?__a=1&max_id={1}",
+"torPass":"password_tor",
+"path_cursor":"./Cursors/cursors_[openhousetorino].json",
+"start_from":380,
+"end_with": 382
+} 
