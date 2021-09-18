@@ -1,6 +1,6 @@
 # Presented Pipeline
 
-This starts with the [downloading phase](https://github.com/MatteoBoffa/IP_Project-Social_analysis/tree/main/Code/Database_Material): with the aid of developers tools such as Instaloader and Flickr-api, it is possible to download the social contents of 
+This starts with the downloading phase: with the aid of developers tools such as Instaloader and Flickr-api, it is possible to download the social contents of 
 the chosen zone and period. 
 
 After comes the clustering phase: each picture is clustered according to its geographical proximity with the others in order to achieve the dynamic zoning of the area under analysis.
