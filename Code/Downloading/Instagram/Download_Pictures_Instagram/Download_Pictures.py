@@ -13,19 +13,6 @@ from stem.control import Controller
 from stem import Signal
 import numpy as np
 
-def get_tor_session():
-    # initialize a requests Session
-    session = requests.Session()
-    # setting the proxy of both http & https to the localhost:9050 
-    # this requires a running Tor service in your machine and listening on port 9050 (by default)
-    session.proxies = {"http": "socks5://localhost:9050", "https": "socks5://localhost:9050"}
-    return session
-
-def renew_connection(torPass):
-    with Controller.from_port(port=9051) as c:
-        c.authenticate(torPass)
-        # send NEWNYM signal to establish a new clean connection through the Tor network
-        c.signal(Signal.NEWNYM)
 
 class Dropbox_Object():
 	def __init__(self,data):
@@ -59,7 +46,6 @@ class Instagram_Object():
 		self.until=datetime(int(until[0]),int(until[1]),int(until[2]))
 		self.data=""
 		self.session=session
-		self.torPass=data["torPass"]
 
 
 	def getPosts(self):
@@ -78,8 +64,7 @@ class Instagram_Object():
 			#In case of exception, renew connection
 			exc_type, exc_obj, exc_tb = sys.exc_info()
 			print("3) An exception was launched! {},{},{}".format(e,exc_type,exc_tb.tb_lineno))
-			renew_connection(self.torPass)
-			self.session=get_tor_session()
+			renew_connection()
 			r=self.session.get(url)
 			return ""
 
@@ -158,7 +143,7 @@ class Downloader():
 				except Exception as e:
 					exc_type, exc_obj, exc_tb = sys.exc_info()
 					print("4) An exception was launched! {},{}".format(exc_type,exc_tb.tb_lineno))
-					renew_connection(self.instagramObject.torPass)
+					renew_connection()
 					self.instagramObject.session=get_tor_session()
 					r=self.instagramObject.session.get(url)
 				
@@ -220,7 +205,6 @@ if __name__ == '__main__':
 	#NEED TO CREATE THEM JUST ONCE -> OTHERWISE EXCEPTION
 	pymongoObject=PyMongo_Object(data)
 	dropboxObject=Dropbox_Object(data)
-	s=get_tor_session()
 	startFrom=data["start_from"] #Used to eventually limit the number of JSON considered
 	endWith=data["end_with"]
 	lenFile=len(list(locations_and_cursors.keys())[startFrom:endWith])
