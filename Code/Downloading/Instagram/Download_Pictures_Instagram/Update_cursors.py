@@ -13,16 +13,6 @@ from stem.control import Controller
 from stem import Signal
 import numpy as np
 
-def get_tor_session():
-    session = requests.Session()
-    session.proxies = {"http": "socks5://localhost:9050", "https": "socks5://localhost:9050"}
-    return session
-
-def renew_connection(torPass):
-    with Controller.from_port(port=9051) as c:
-        c.authenticate(torPass)
-        c.signal(Signal.NEWNYM)
-
 class Instagram_Object():
 	def __init__(self,data,location_id,until,since,session,cursor):
 		self.location_id=location_id
@@ -46,7 +36,6 @@ class Instagram_Object():
 		self.until=until
 		self.data=""
 		self.session=session
-		self.torPass=data["torPass"]
 
 
 	def getPosts(self):
@@ -167,9 +156,8 @@ if __name__ == '__main__':
 	until=datetime(int(until[0]),int(until[1]),int(until[2]))
 	start_pos=[str(el) for el in np.arange(2210000000000000000,2310000000000000000,10000000000000000)]
 	linkInst=data["link_Instagram"]
-	torPass=data["torPass"]
 
-	s=get_tor_session()
+
 	startFrom=0 #Used to eventually limit the number of JSON considered
 
 	lenFile=len(list(locations.keys())[startFrom:])
@@ -195,8 +183,7 @@ if __name__ == '__main__':
 				emptyEdges+=1
 				exc_type, exc_obj, exc_tb = sys.exc_info()
 				print("1) An exception was launched! {},{}".format(exc_type,exc_tb.tb_lineno))
-				renew_connection(torPass)
-				s=get_tor_session()
+				renew_connection()
 				r = s.get(url)
 
 		indexKey=list(locations.keys())[startFrom:].index(key)
